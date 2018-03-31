@@ -33,7 +33,7 @@ Sopported Routes for `resource`:
 
 ### Deploy:
 - Build the site project, copy it into `wwwroot` folder.
-- Configure `conf.json` with correct parameters.
+- Configure `conf.json` with correct parameters, database should be mysql but its probably not hard to change into any other database since we use gorm for querying.
 - `go get`
 - `go build`
 - Run it, remember to copy the `conf.json` file and `wwwroot/` folder to where the binary is located.
