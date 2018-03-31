@@ -1,0 +1,17 @@
+{{define "content"}}
+    <div class="box">   
+        <form action="/forgotpass" method="POST">
+        <label class="label">Email</label>                       
+        <p class="control has-icons-left">
+            <input class="input" type="email" required placeholder="Email" name="email"/>
+            <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+            </span>                
+        </p>
+        <hr>
+            <p class="control">
+            <input type="submit" value="Send Email" class="button is-primary" />
+        </p>
+        </form>
+    </div>         
+{{end}}

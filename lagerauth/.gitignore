@@ -1,0 +1,7 @@
+.vscode/
+debug
+lagerauth
+lagerauth.exe
+
+cmd/lagerauth-hashpassword/lagerauth-hashpassword
+cmd/lagerauth-hashpassword/lagerauth-hashpassword.exe

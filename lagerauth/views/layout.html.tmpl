@@ -1,0 +1,34 @@
+{{define "layout"}}
+<html>  
+  <head>
+    <link rel="stylesheet" href="/assets/css/bulma.min.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+  </head>
+  
+  <body>
+    <section class="hero is-fullheight is-dark is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-vcentered">
+            <div class="column is-4 is-offset-4">
+              <h1 class="title">
+                {{.Title}}
+              </h1>
+
+              {{if .ErrorMessage}}
+                <div class="notification is-danger">{{.ErrorMessage}}</div>
+              {{end}}
+
+              {{if .InfoMessage}}
+                  <div class="notification is-success">{{.InfoMessage}}</div>
+              {{end}}
+
+              {{template "content" .}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+{{end}}

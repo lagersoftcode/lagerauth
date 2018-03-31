@@ -1,0 +1,21 @@
+{
+
+  "Bind": ":8081",
+
+  "DBConfig": {
+    "User": "",
+    "Pass": "",
+    "Database": "lagerauth",
+    "Host": "127.0.0.1",
+    "Port": "3306"
+  },
+
+  "EmailConfig": {
+    "Email": "",
+    "Pass": "",
+    "Host": "smtp.gmail.com",
+    "Port": "587"
+  },  
+ 
+  "JWTKey": ""
+}

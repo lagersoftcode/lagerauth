@@ -1,0 +1,29 @@
+{{define "content"}}
+    {{if not .DisableForm}}
+        <div class="box">   
+            <form action="/resetpass" method="POST">
+            <input type="hidden" name="code" value="{{.Code}}" />
+            <label class="label">Password</label>
+            <p class="control has-icons-left">
+                <input class="input" type="password" required placeholder="Password" name="password"/>
+                <span class="icon is-small is-left">
+                <i class="fa fa-lock"></i>
+                </span>
+            </p>             
+            <hr>
+            <label class="label">Password Confirmation</label>
+            <p class="control has-icons-left">
+                <input class="input" type="password" required placeholder="Password Confirmation" name="passwordConfirmation"/>
+                <span class="icon is-small is-left">
+                <i class="fa fa-lock"></i>
+                </span>
+            </p>        
+            <hr>
+            <p class="control">
+                <input type="submit" value="Confirm" class="button is-primary" />
+            </p>
+            </form>
+        </div>          
+    {{end}}
+
+{{end}}

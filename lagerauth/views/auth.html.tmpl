@@ -1,0 +1,33 @@
+{{define "content"}}
+  {{if not .DisableLogin}}
+    <div class="box">   
+      <form action="/auth?redirect_uri={{.RedirectURI}}&client_id={{.ClientID}}" method="POST">
+        <label class="label">Email</label>                       
+        <p class="control has-icons-left">
+          <input class="input" required placeholder="Email" name="email"/>
+          <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+          </span>                
+        </p>
+        <hr>
+        <label class="label">Password</label>
+        <p class="control has-icons-left">
+          <input class="input" type="password" required placeholder="Password" name="password"/>
+          <span class="icon is-small is-left">
+            <i class="fa fa-lock"></i>
+          </span>
+        </p>             
+        <hr>
+        <div class="level">
+          <p class="control">
+            <input type="submit" value="Login" class="button is-primary" />
+          </p>
+          <p class="control level-right">
+            <a href="/forgotpass" class="button is-light">Forgot Password</a>
+          </p>
+        </div>
+      </form>
+    </div>          
+  {{end}}
+
+{{end}}
