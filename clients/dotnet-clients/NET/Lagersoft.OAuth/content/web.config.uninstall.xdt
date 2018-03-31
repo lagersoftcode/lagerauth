@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+	<appSettings>
+		<add key="OAApplicationId" xdt:Transform="Remove" xdt:Locator="Match(key)"/>
+		<add key="OAApplicationSecret" xdt:Transform="Remove" xdt:Locator="Match(key)"/>
+
+		<add key="OAuthUrl" xdt:Transform="Remove" xdt:Locator="Match(key)"/>
+		<add key="OACookieName" xdt:Transform="Remove" xdt:Locator="Match(key)"/>
+	</appSettings>
+</configuration>

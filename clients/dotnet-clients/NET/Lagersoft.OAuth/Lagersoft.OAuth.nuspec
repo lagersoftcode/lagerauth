@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>Lagersoft.OAuth</id>
+		<version>1.3.2</version>
+		<authors>ozkar</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>OAuth Para .NET 4.5</description>
+		<dependencies>
+			<dependency id="Newtonsoft.Json" version="8.0.2" />
+			<dependency id="JWT" version="1.3.3" />
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="content\Controllers\OAuthController.cs.pp" target="content\Controllers\OAuthController.cs.pp" />
+		<file src="content\Views\OAuth\Index.cshtml" target="content\Views\OAuth\Index.cshtml" />
+		<file src="content\web.config.install.xdt" target="content\web.config.install.xdt" />
+		<file src="content\web.config.uninstall.xdt" target="content\web.config.uninstall.xdt" />
+		<file src="bin\Release\Lagersoft.OAuth.dll" target="lib\net46\Lagersoft.OAuth.dll" />
+		<file src="src\Models.cs" target="src\Models.cs" />
+		<file src="src\OAuthorize.cs" target="src\OAuthorize.cs" />
+		<file src="src\Utils.cs" target="src\Utils.cs" />
+	</files>
+</package>

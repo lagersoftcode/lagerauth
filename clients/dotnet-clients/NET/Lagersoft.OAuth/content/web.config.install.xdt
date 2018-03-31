@@ -1,0 +1,10 @@
+﻿<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+	<appSettings>
+		<add key="OAApplicationId" value="" xdt:Transform="Insert" />
+		<add key="OAApplicationSecret" value="" xdt:Transform="Insert" />
+
+		<add key="OAuthUrl" value="https://oauth.lagersoft.com/" xdt:Transform="Insert" />
+		<add key="OACookieName" value="lbxylZg2vZnvza1VNAOt" xdt:Transform="Insert" />
+	</appSettings>
+</configuration>

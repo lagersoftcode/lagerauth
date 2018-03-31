@@ -1,0 +1,19 @@
+﻿@model dynamic
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Error</title>
+</head>
+<body>
+	<div>
+		@TempData["error"]
+		@Html.ActionLink("login.", "Login", "OAuth")
+	</div>
+</body>
+</html>
