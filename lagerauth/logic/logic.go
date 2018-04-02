@@ -3,7 +3,8 @@ package logic
 import (
 	"lagerauth/database"
 	"lagerauth/email"
-	l "lagerauth/logger"
+
+	l "github.com/ozkar99/logger"
 )
 
 /* Database */

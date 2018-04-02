@@ -12,10 +12,11 @@ import (
 	"lagerauth/handlers/api"
 	"lagerauth/handlers/middleware"
 	"lagerauth/handlers/permissions"
-	"lagerauth/logger"
 	"lagerauth/logic"
 
 	"github.com/gorilla/mux"
+	"github.com/ozkar99/logger"
+	_ "github.com/ozkar99/logger/dialects/mysql"
 )
 
 func main() {
@@ -23,7 +24,7 @@ func main() {
 	db := database.New(conf)       //connect to db
 	emailSender := email.New(conf) //email sender
 
-	logger := logger.New(logger.Options{Writer: os.Stdout, Database: db.DB.DB()})
+	logger := logger.New(db.DB.DB(), os.Stdout)
 
 	logic.SetLogger(logger)           //set package-level 'logger' variable on logic package
 	logic.SetDB(db)                   //set package-level 'db' variable on logic package
