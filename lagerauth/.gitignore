@@ -8,3 +8,5 @@ cmd/lagerauth-hashpassword/lagerauth-hashpassword.exe
 
 wwwroot/*
 !wwwroot/.gitkeep
+
+conf.json

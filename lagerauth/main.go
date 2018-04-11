@@ -9,12 +9,13 @@ import (
 	"lagerauth/database"
 	"lagerauth/email"
 	"lagerauth/handlers"
-	"lagerauth/handlers/api"
 	"lagerauth/handlers/middleware"
+	"lagerauth/handlers/api"
 	"lagerauth/handlers/permissions"
 	"lagerauth/logic"
 
 	"github.com/gorilla/mux"
+	mw "github.com/ozkar99/middleware"
 	"github.com/ozkar99/logger"
 	_ "github.com/ozkar99/logger/dialects/mysql"
 )
@@ -50,14 +51,14 @@ func main() {
 	 * User: returns a omniauth user info hash (for gitlab)
 	 * Menu: returns a list of resources user has access in that application so that we can render menus more efficiently
 	 */
-	r.Handle("/can", middleware.WithAuthentication(middleware.JSONContentType(permissions.Can))).Methods(http.MethodPost) //we manage authorization on the route.
-	r.Handle("/logoff", middleware.WithAuthentication(middleware.JSONContentType(permissions.Logoff))).Methods(http.MethodPost)
-	r.Handle("/user", middleware.WithAuthentication(middleware.JSONContentType(permissions.User))).Methods(http.MethodPost, http.MethodGet)
-	r.Handle("/menu", middleware.WithAuthentication(middleware.JSONContentType(permissions.Menu))).Methods(http.MethodPost)
+	r.Handle("/can", middleware.WithAuthentication(mw.JSONContentType(permissions.Can))).Methods(http.MethodPost) //we manage authorization on the route.
+	r.Handle("/logoff", middleware.WithAuthentication(mw.JSONContentType(permissions.Logoff))).Methods(http.MethodPost)
+	r.Handle("/user", middleware.WithAuthentication(mw.JSONContentType(permissions.User))).Methods(http.MethodPost, http.MethodGet)
+	r.Handle("/menu", middleware.WithAuthentication(mw.JSONContentType(permissions.Menu))).Methods(http.MethodPost)
 
 	/* Api Routes For OAuth Site: */
 	apiRouter := mux.NewRouter()
-	r.PathPrefix("/api").Handler(http.StripPrefix("/api", middleware.WithAuthorization(middleware.JSONContentType(apiRouter)))) //we manage authorization on the middleware.
+	r.PathPrefix("/api").Handler(http.StripPrefix("/api", middleware.WithAuthorization(mw.JSONContentType(apiRouter)))) //we manage authorization on the middleware.
 	apiRouter.PathPrefix("/applications").Handler(api.NewApplications())
 	apiRouter.PathPrefix("/users").Handler(api.NewUsers())
 	apiRouter.PathPrefix("/roles").Handler(api.NewRoles())
@@ -72,7 +73,7 @@ func main() {
 	})
 
 	log.Printf("Starting lagerauth... bind: %s\n", conf.Bind)
-	err := http.ListenAndServe(conf.Bind, middleware.Lowercase(middleware.CORS(r)))
+	err := http.ListenAndServe(conf.Bind, mw.Lowercase(mw.CORS(r)))
 	if err != nil {
 		log.Fatal(err.Error())
 	}
