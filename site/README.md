@@ -1,10 +1,6 @@
 # lagerauth-site
 
-> site frontend for lagerauth
-
-## Configuration
-
-Make sure to change the respective config/enviroment files (specially production) to point to where you installed lagerauth.  
+> site for lagerauth
 
 ## Build Setup
 

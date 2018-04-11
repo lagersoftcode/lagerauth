@@ -13,6 +13,10 @@ const actions = {
       store.commit(types.mutations.LOAD_USERS, response.body)
       loading.close()
     }, failed => {
+      vm.$snackbar.open({
+        message: `error getting users: ${failed.body}`,
+        type: 'is-danger'
+      })
       store.commit(types.mutations.LOAD_USERS, []) // reset on failure
       loading.close()
     })

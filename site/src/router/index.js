@@ -5,6 +5,8 @@ import Login from '../components/Login/Login'
 import Token from '../components/Login/Token'
 import Applications from '../components/Applications/Applications'
 import Application from '../components/Applications/Application'
+import Roles from '../components/Roles/Roles'
+import Role from '../components/Roles/Role'
 import Users from '../components/Users/Users'
 
 Vue.use(Router)
@@ -18,6 +20,9 @@ export default new Router({
 
     { path: '/applications', name: 'Applications', component: Applications },
     { path: '/application/:id?', name: 'Application', component: Application },
+
+    { path: '/roles', name: 'Roles', component: Roles },
+    { path: '/role/:id?', name: 'Role', component: Role },
 
     { path: '/users', name: 'Users', component: Users }
   ],

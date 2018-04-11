@@ -4,14 +4,14 @@
 
       <h1 class="title">applications</h1>
 
-      <button class="button is-primary" @click="navigate(null)">Create New</button>
+      <button class="button is-primary" @click="navigate(null)">create new</button>
       
       <b-table :data="applications" selectable :selected.sync="selected" paginated :per-page='pagination'>        
-        <template scope="props">
-          <b-table-column label="id" width="40" numeric> {{ props.row.id }} </b-table-column>
+        <template slot-scope="props">
+          <b-table-column field="id" label="id" width="40" numeric sortable> {{ props.row.id }} </b-table-column>
+          <b-table-column field="name" label="name" sortable> {{ props.row.name }} </b-table-column>
           <b-table-column label="client id" > {{ props.row.clientId }} </b-table-column>
           <b-table-column label="secret key" > <button @click="showSecretKey(props.row)" class="button">show</button> </b-table-column>
-          <b-table-column label="name"> {{ props.row.name }} </b-table-column>
           <b-table-column label="description"> {{ props.row.description }} </b-table-column>
           <b-table-column label="enabled"> {{ props.row.enabled }} </b-table-column>
           <b-table-column label="">
