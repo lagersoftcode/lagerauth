@@ -13,6 +13,6 @@ type User struct {
 	Description *string `json:"description"`
 	Extra       *string `json:"-"`
 
-	Applications []Application `json:"-" gorm:"many2many:users_applications;" `
-	Roles        []Role        `json:"-" gorm:"many2many:users_roles;" `
+	Applications []Application `json:"applications" gorm:"many2many:users_applications;" `
+	Roles        []Role        `json:"roles" gorm:"many2many:users_roles;" `
 }

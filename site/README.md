@@ -18,4 +18,9 @@ npm run build
 npm run build --report
 ```
 
+## Configuration
+
+Make sure to change the respective config/enviroment files (specially production) to point to where you installed lagerauth.  
+
+
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

@@ -60,6 +60,7 @@ func main() {
 	r.PathPrefix("/api").Handler(http.StripPrefix("/api", middleware.WithAuthorization(middleware.JSONContentType(apiRouter)))) //we manage authorization on the middleware.
 	apiRouter.PathPrefix("/applications").Handler(api.NewApplications())
 	apiRouter.PathPrefix("/users").Handler(api.NewUsers())
+	apiRouter.PathPrefix("/roles").Handler(api.NewRoles())
 
 	/* Static files for oauth*/
 	r.PathPrefix("/assets").Handler(handlers.NewAssetsHandler())

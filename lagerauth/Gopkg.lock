@@ -38,15 +38,6 @@
   revision = "1c35d901db3da928c72a72d8458480cc9ade058f"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/ozkar99/logger"
-  packages = [
-    ".",
-    "dialects/mysql"
-  ]
-  revision = "b72a56f63360cc7475f224ad26266ca468861b28"
-
-[[projects]]
   name = "github.com/satori/go.uuid"
   packages = ["."]
   revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
@@ -74,6 +65,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5a0a37bd13fdb6df48c848cf0734fb6f31e95823346be8fae6673e979af93281"
+  inputs-digest = "f8edd944bff105a01f6c1e59fc8245c136b870cdeabe7ff899a5bcda4895dfe6"
   solver-name = "gps-cdcl"
   solver-version = 1

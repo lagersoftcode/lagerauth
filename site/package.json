@@ -2,7 +2,7 @@
   "name": "lagerauth-site",
   "version": "1.0.0",
   "description": "site for lagerauth",
-  "author": "Oscar Moreno Garza <oscar.moreno@diginteligencia.com>",
+  "author": "Oscar Moreno Garza <oscarmg99@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

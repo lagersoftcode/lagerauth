@@ -7,11 +7,11 @@ import (
 type Permission struct {
 	models.Base
 
-	Method     string
-	Controller string
-	Action     string
-	Extra      string
+	Method     string `json:"method"`
+	Controller string `json:"controller"`
+	Action     string `json:"action"`
+	Extra      string `json:"-"`
 
 	Role   Role `json:"-"`
-	RoleID uint
+	RoleID uint `json:"-"`
 }
