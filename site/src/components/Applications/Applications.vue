@@ -7,7 +7,7 @@
       <button class="button is-primary" @click="navigate(null)">create new</button>
       
       <b-table :data="applications" selectable :selected.sync="selected" paginated :per-page='pagination'>        
-        <template slot-scope="props">
+        <template scope="props">
           <b-table-column field="id" label="id" width="40" numeric sortable> {{ props.row.id }} </b-table-column>
           <b-table-column field="name" label="name" sortable> {{ props.row.name }} </b-table-column>
           <b-table-column label="client id" > {{ props.row.clientId }} </b-table-column>
