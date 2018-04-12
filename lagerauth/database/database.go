@@ -47,14 +47,6 @@ func migrate(db *gorm.DB) {
 		&oauthModels.OAuthToken{},
 		&passwordResetModels.PasswordResetCode{},
 	)
-
-	// Create Log table if not exists:
-	db.Exec(`create table if not exists logs (
-		ID int not null auto_increment primary key,
-		Level varchar(10) not null,
-		Message varchar(250) not null,
-		CreatedAt timestamp(4) default current_timestamp(6))
-	`)
 }
 
 func seed(db *gorm.DB) {
