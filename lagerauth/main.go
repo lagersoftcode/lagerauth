@@ -68,7 +68,7 @@ func main() {
 
 	/* Static files and setup for the site */
 	r.PathPrefix("/static").Handler(http.StripPrefix("/static", http.FileServer(http.Dir("wwwroot/static"))))
-	r.PathPrefix("/control").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	r.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "wwwroot/index.html") //this handles 404's needed for vue-router history mode. (which in turn is needed for the redirect_uri to work correctly.)
 	})
 
