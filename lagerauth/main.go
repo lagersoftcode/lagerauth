@@ -9,15 +9,15 @@ import (
 	"lagerauth/database"
 	"lagerauth/email"
 	"lagerauth/handlers"
-	"lagerauth/handlers/middleware"
 	"lagerauth/handlers/api"
+	"lagerauth/handlers/middleware"
 	"lagerauth/handlers/permissions"
 	"lagerauth/logic"
 
 	"github.com/gorilla/mux"
-	mw "github.com/ozkar99/middleware"
 	"github.com/ozkar99/logger"
 	_ "github.com/ozkar99/logger/dialects/mysql"
+	mw "github.com/ozkar99/middleware"
 )
 
 func main() {
@@ -66,9 +66,9 @@ func main() {
 	/* Static files for oauth*/
 	r.PathPrefix("/assets").Handler(handlers.NewAssetsHandler())
 
-	/* Static files and setup for vue.js */
+	/* Static files and setup for the site */
 	r.PathPrefix("/static").Handler(http.StripPrefix("/static", http.FileServer(http.Dir("wwwroot/static"))))
-	r.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	r.PathPrefix("/control").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "wwwroot/index.html") //this handles 404's needed for vue-router history mode. (which in turn is needed for the redirect_uri to work correctly.)
 	})
 

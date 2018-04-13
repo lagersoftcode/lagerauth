@@ -1,6 +1,8 @@
 package logic
 
 import (
+	"errors"
+
 	coreModels "lagerauth/models/core"
 	oauthModels "lagerauth/models/oauth"
 
@@ -18,6 +20,10 @@ func GetApplicationPermissionsFromToken(token uuid.UUID) ([]coreModels.Permissio
 	res = db.First(&user, tokenModel.UserID).Related(&user.Roles, "Roles")
 	if res.Error != nil {
 		return nil, res.Error
+	}
+
+	if !user.Enabled {
+		return nil, errors.New("User is disabled")
 	}
 
 	var application coreModels.Application
@@ -67,6 +73,10 @@ func GetUserFromToken(token uuid.UUID) (*coreModels.User, error) {
 	res = db.Find(&user, tokenModel.UserID)
 	if res.Error != nil {
 		return nil, res.Error
+	}
+
+	if !user.Enabled {
+		return nil, errors.New("User is disabled")
 	}
 
 	return &user, nil

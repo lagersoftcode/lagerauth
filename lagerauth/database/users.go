@@ -22,10 +22,14 @@ func (u *User) GetUsers() ([]core.User, error) {
 func (u *User) EmailExists(email string) error {
 
 	var user core.User
-	res := u.db.Where("email = ?", email).First(&user)
+	res := u.db.Where(core.User{Email: email}).First(&user)
 
 	if res.Error != nil || user.Email == "" {
 		return errors.New("Email not found")
+	}
+
+	if !user.Enabled {
+		return errors.New("User is disabled")
 	}
 
 	return nil
@@ -34,7 +38,7 @@ func (u *User) EmailExists(email string) error {
 func (u *User) GetHashedPasswordFromEmail(email string) ([]byte, error) {
 
 	var user core.User
-	res := u.db.Where("email = ? ", email).First(&user)
+	res := u.db.Where(core.User{Email: email, Enabled: true}).First(&user)
 
 	if res.Error == nil {
 		return []byte(user.Password), nil
@@ -51,7 +55,7 @@ func (u *User) GetEmailFromID(userID uint) (string, error) {
 
 func (u *User) GetIDFromEmail(email string) (uint, error) {
 	var user core.User
-	res := u.db.Where("email = ?", email).First(&user)
+	res := u.db.Where(core.User{Email: email}).First(&user)
 
 	if res.Error != nil {
 		return 0, res.Error

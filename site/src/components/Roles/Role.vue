@@ -61,13 +61,7 @@
         }
       },
       created () {
-        if (this.applications.length === 0) {
-          this.$store.dispatch(appTypes.actions.GET_APPLICATIONS, this).then(() => {
-            this.load()
-          })
-        } else {
-          this.load()
-        }
+        this.$store.dispatch(appTypes.actions.GET_APPLICATIONS, this).then(() => { this.load() })
       },
       computed: {
         ...mapGetters({

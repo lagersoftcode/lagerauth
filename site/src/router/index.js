@@ -8,6 +8,7 @@ import Application from '../components/Applications/Application'
 import Roles from '../components/Roles/Roles'
 import Role from '../components/Roles/Role'
 import Users from '../components/Users/Users'
+import User from '../components/Users/User'
 
 Vue.use(Router)
 
@@ -24,7 +25,8 @@ export default new Router({
     { path: '/roles', name: 'Roles', component: Roles },
     { path: '/role/:id?', name: 'Role', component: Role },
 
-    { path: '/users', name: 'Users', component: Users }
+    { path: '/users', name: 'Users', component: Users },
+    { path: '/user/:id?', name: 'User', component: User }
   ],
   mode: 'history'
 })

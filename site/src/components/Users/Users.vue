@@ -11,12 +11,11 @@
           <b-table-column field="id" label="id" width="40" numeric sortable> {{ props.row.id }} </b-table-column>
           <b-table-column field="name" label="name" sortable> {{ props.row.name }} </b-table-column>
           <b-table-column field="email" label="email" sortable> {{ props.row.email }} </b-table-column>
-          <b-table-column field="departmen" label="department" sortable> {{ props.row.department }} </b-table-column>
+          <b-table-column field="department" label="department" sortable> {{ props.row.department }} </b-table-column>
           <b-table-column label="description"> {{ props.row.description }} </b-table-column>
-          <b-table-column label="enabled"> {{ !props.row.isLockedout }} </b-table-column>
-          
+          <b-table-column label="enabled"> {{ props.row.enabled }} </b-table-column>
+         
           <b-table-column label="">
-            <button class="button" @click="disableUser(props.row)">disable</button>
             <button class="button is-info" @click="navigate(props.row)">edit</button>
             <button class="button is-danger" @click="tryDeleteItem(props.row)">delete</button>
           </b-table-column>
@@ -44,6 +43,7 @@
 <script>
     import types from '../../store/User/types'
     import {mapGetters} from 'vuex'
+    
     export default {
       name: 'Users',
       data () {
@@ -70,16 +70,13 @@
         },
         tryDeleteItem (item) {
           this.$dialog.confirm({
-            message: `are you sure you want to delete the user: <b>${item.name}</b> ?`,
+            message: `are you sure you want to delete the user: <b>${item.name}</b> with login: ${item.email} ?`,
             type: 'is-danger',
             hasIcon: true,
             confirmText: 'delete user',
             cancelText: 'cancel',
-            onConfirm: () => this.$store.dispatch(types.actions.DELETE_ROLE, {vm: this, item})
+            onConfirm: () => this.$store.dispatch(types.actions.DELETE_USER, {vm: this, item})
           })
-        },
-        disableUser (item) {
-          console.log(`disable user: ${item}`)
         }
       }
     }

@@ -9,7 +9,7 @@ type User struct {
 	Password    string  `json:"-"`
 	Name        *string `json:"name"`
 	Department  *string `json:"department"`
-	LockedOut   bool    `json:"isLockedout"`
+	Enabled     bool    `json:"enabled"`
 	Description *string `json:"description"`
 	Extra       *string `json:"-"`
 

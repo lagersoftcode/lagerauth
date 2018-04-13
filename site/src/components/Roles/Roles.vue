@@ -40,6 +40,7 @@
 
 <script>
     import types from '../../store/Role/types'
+    import {arrCount} from '../../helpers/count'
     import {mapGetters} from 'vuex'
 
     export default {
@@ -77,10 +78,7 @@
           })
         },
         count (ary) {
-          if (!ary) {
-            return 0
-          }
-          return ary.length
+          return arrCount(ary)
         }
       }
     }
