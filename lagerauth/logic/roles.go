@@ -2,6 +2,7 @@ package logic
 
 import (
 	"lagerauth/models/core"
+	"time"
 )
 
 func GetRoles() ([]core.Role, error) {
@@ -23,6 +24,8 @@ func DeleteRole(id uint) error {
 }
 
 func CreateRole(role core.Role) error {
+	role.CreatedAt = time.Now()
+	role.UpdatedAt = time.Now()
 	res := db.Create(&role)
 	return res.Error
 }
@@ -37,6 +40,7 @@ func UpdateRole(role core.Role, id uint) error {
 	dbRole.Name = role.Name
 	dbRole.Description = role.Description
 	dbRole.ApplicationID = role.Application.ID
+	dbRole.UpdatedAt = time.Now()
 
 	// delete all and re-populate
 	res = db.Where(core.Permission{RoleID: id}).Delete(core.Permission{})

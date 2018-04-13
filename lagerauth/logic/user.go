@@ -1,6 +1,9 @@
 package logic
 
-import "lagerauth/models/core"
+import (
+	"lagerauth/models/core"
+	"time"
+)
 
 func GetUsers() []core.User {
 	var users []core.User
@@ -30,6 +33,7 @@ func DeleteUser(id uint) error {
 }
 
 func CreateUser(user core.User) error {
+	user.CreatedAt = time.Now()
 	res := db.Create(&user)
 	return res.Error
 }
@@ -46,6 +50,7 @@ func UpdateUser(user core.User, id uint) error {
 	dbUser.Department = user.Department
 	dbUser.Enabled = user.Enabled
 	dbUser.Description = user.Description
+	dbUser.UpdatedAt = time.Now()
 
 	// delete and re-populate associations
 	db.Model(&dbUser).Association("Applications").Clear()
