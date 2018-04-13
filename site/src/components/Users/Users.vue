@@ -2,11 +2,24 @@
   <section class="section">
     <div class="container">
 
-       <h1 class="title">users</h1>
-      <button class="button is-primary" @click="navigate(null)">create new</button>
+      <h1 class="title">users</h1>
+
+      <div class="columns">
+        <div class="column">
+          <button class="button is-primary" @click="navigate(null)">create new</button>
+        </div>
+      
+        <div class="column is-4 is-offset-4">
+          <div class="control has-icons-right">
+            <b-input v-model="search"></b-input>  
+            <span class="icon is-small is-right">
+              <i class="fa fa-search"></i>
+            </span>
+          </div>
+        </div>
+      </div>
 
       <b-table :data="users" :selected.sync="selected" paginated :per-page='pagination'>
-        
         <template scope="props">
           <b-table-column field="id" label="id" width="40" numeric sortable> {{ props.row.id }} </b-table-column>
           <b-table-column field="name" label="name" sortable> {{ props.row.name }} </b-table-column>
@@ -42,13 +55,13 @@
 
 <script>
     import types from '../../store/User/types'
-    import {mapGetters} from 'vuex'
     
     export default {
       name: 'Users',
       data () {
         return {
-          selected: null
+          selected: null,
+          search: ''
         }
       },
       created () {
@@ -56,9 +69,9 @@
       },
       computed: {
         pagination: () => process.env.PAGINATION,
-        ...mapGetters({
-          users: types.getters.USERS
-        })
+        users () {
+          return this.$store.state.User.Users.filter(this.searchPredicate)
+        }
       },
       methods: {
         navigate (item) {
@@ -77,6 +90,16 @@
             cancelText: 'cancel',
             onConfirm: () => this.$store.dispatch(types.actions.DELETE_USER, {vm: this, item})
           })
+        },
+        searchPredicate (item) {
+          if (!this.search) {
+            return true
+          }
+
+          return item.email.toLowerCase().includes(this.search.toLowerCase()) ||
+          item.name.toLowerCase().includes(this.search.toLowerCase()) ||
+          item.description.toLowerCase().includes(this.search.toLowerCase()) ||
+          item.department.toLowerCase().includes(this.search.toLowerCase())
         }
       }
     }

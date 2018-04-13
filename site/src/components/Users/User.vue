@@ -10,7 +10,7 @@
           <div class="column">
             <form @submit.prevent="save">
               <b-field label="email">
-                <b-input v-model="email" required></b-input>
+                <b-input v-model="email" type="email" required></b-input>
               </b-field>
 
               <b-field label="name">
