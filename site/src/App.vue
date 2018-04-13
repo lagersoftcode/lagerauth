@@ -19,4 +19,14 @@ export default {
 <style>
 @import '~font-awesome/css/font-awesome.min.css';
 @import '~bulma/css/bulma.css';
+
+.input,
+.dropdown,
+.dropdown-toggle {
+  width: 100%;
+}
+
+.v-select .dropdown-menu > .highlight > a {
+  background-color: #00d1b2;
+}
 </style>

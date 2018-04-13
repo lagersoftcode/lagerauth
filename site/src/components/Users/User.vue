@@ -125,15 +125,3 @@
       }
     }
 </script>
-
-<style>
-  .input,
-  .dropdown,
-  .dropdown-toggle {
-    width: 100%;
-  }
-
-  .v-select .dropdown-menu > .highlight > a {
-    background-color: #00d1b2;
-  }
-</style>
