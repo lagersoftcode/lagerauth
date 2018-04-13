@@ -48,12 +48,10 @@ func main() {
 	/* Permission Server Routes
 	 * Can: returns 200 or 401/403 depending if the user has access to the resource
 	 * Logoff: returns 200 always disables the user token
-	 * User: returns a omniauth user info hash (for gitlab)
 	 * Menu: returns a list of resources user has access in that application so that we can render menus more efficiently
 	 */
 	r.Handle("/can", middleware.WithAuthentication(mw.JSONContentType(permissions.Can))).Methods(http.MethodPost) //we manage authorization on the route.
 	r.Handle("/logoff", middleware.WithAuthentication(mw.JSONContentType(permissions.Logoff))).Methods(http.MethodPost)
-	r.Handle("/user", middleware.WithAuthentication(mw.JSONContentType(permissions.User))).Methods(http.MethodPost, http.MethodGet)
 	r.Handle("/menu", middleware.WithAuthentication(mw.JSONContentType(permissions.Menu))).Methods(http.MethodPost)
 
 	/* Api Routes For OAuth Site: */
