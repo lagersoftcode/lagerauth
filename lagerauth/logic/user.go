@@ -13,7 +13,7 @@ func GetUsers() []core.User {
 
 func GetUser(id uint) (core.User, error) {
 	var user core.User
-	res := db.Preload("Applications").Preload("Roles").Find(&user, id)
+	res := db.Preload("Applications").Preload("Roles").Preload("Roles.Application").Find(&user, id)
 	return user, res.Error
 }
 
@@ -53,10 +53,8 @@ func UpdateUser(user core.User, id uint) error {
 	dbUser.UpdatedAt = time.Now()
 
 	// delete and re-populate associations
-	db.Model(&dbUser).Association("Applications").Clear()
-	db.Model(&dbUser).Association("Roles").Clear()
-	dbUser.Applications = user.Applications
-	dbUser.Roles = user.Roles
+	db.Model(&dbUser).Association("Applications").Replace(user.Applications)
+	db.Model(&dbUser).Association("Roles").Replace(user.Roles)
 
 	res = db.Save(&dbUser)
 	return res.Error
