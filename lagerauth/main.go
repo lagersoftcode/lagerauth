@@ -17,7 +17,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/ozkar99/logger"
 	_ "github.com/ozkar99/logger/dialects/mysql"
-	mw "github.com/ozkar99/middleware"
+	mw "gitlab.com/ozkar99/middleware"
 )
 
 func main() {
