@@ -78,16 +78,6 @@ namespace Lagersoft.OAuth
 			var returnUrl = $"{host}/OAuth/OAuth";
 			return $"{OAuthUrl}auth?client_id={ClientId}&redirect_uri={HttpUtility.UrlEncode(returnUrl)}";
 		}
-
-		public static CanModel GetRouteData(HttpContext context)
-		{
-			return new CanModel
-			{
-				Method = context.Request.Method.ToLower(),
-				Controller = "cssmanager",
-				Action = "index",
-			};
-		}
 		#endregion
 
 		#region authentication
