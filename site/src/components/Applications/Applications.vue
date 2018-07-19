@@ -4,7 +4,20 @@
 
       <h1 class="title">applications</h1>
 
-      <button class="button is-primary" @click="navigate(null)">create new</button>
+     <div class="columns">
+        <div class="column">
+          <button class="button is-primary" @click="navigate(null)">create new</button>
+        </div>
+      
+        <div class="column is-4 is-offset-4">
+          <div class="control has-icons-right">
+            <b-input v-model="search"></b-input>  
+            <span class="icon is-small is-right">
+              <i class="fa fa-search"></i>
+            </span>
+          </div>
+        </div>
+      </div>
       
       <b-table :data="applications" selectable :selected.sync="selected" paginated :per-page='pagination'>        
         <template scope="props">
@@ -41,13 +54,13 @@
 
 <script>
     import types from '../../store/Application/types'
-    import {mapGetters} from 'vuex'
 
     export default {
       name: 'Applications',
       data () {
         return {
-          selected: null
+          selected: null,
+          search: ''
         }
       },
       created () {
@@ -55,9 +68,9 @@
       },
       computed: {
         pagination: () => process.env.PAGINATION,
-        ...mapGetters({
-          applications: types.getters.APPLICATIONS
-        })
+        applications () {
+          return this.$store.state.Application.Applications.filter(this.searchPredicate)
+        }
       },
       methods: {
         navigate (item) {
@@ -103,6 +116,16 @@
           } else {
             this.$store.dispatch(types.actions.DELETE_APPLICATION, {vm: this, item})
           }
+        },
+        searchPredicate (item) {
+          if (!this.search) {
+            return true
+          }
+
+          return item.name.toLowerCase().includes(this.search.toLowerCase()) ||
+          item.description.toLowerCase().includes(this.search.toLowerCase()) ||
+          item.clientId.toLowerCase().includes(this.search.toLowerCase()) ||
+          item.secretKey.toLowerCase().includes(this.search.toLowerCase())
         }
       }
     }

@@ -1,6 +1,8 @@
 package database
 
 import (
+	"crypto/rand"
+	"encoding/base64"
 	"fmt"
 	"log"
 
@@ -47,27 +49,36 @@ func migrate(db *gorm.DB) {
 		&oauthModels.OAuthToken{},
 		&passwordResetModels.PasswordResetCode{},
 	)
-
-	// Create Log table if not exists:
-	db.Exec(`create table if not exists logs (
-		ID int not null auto_increment primary key,
-		Level varchar(10) not null,
-		Message varchar(250) not null,
-		CreatedAt timestamp(4) default current_timestamp(6))
-	`)
 }
 
 func seed(db *gorm.DB) {
 
+	secretKey, _ := generateRandomString(64)
 	applicationClientId := uuid.FromStringOrNil("00000000-0000-0000-0000-000000000001") // using 1 so its not uuid.Nil
 	mangerApplication := &coreModels.Application{
 		Name:        "lagerauth",
 		Description: "lagerauth manager application",
 		ClientID:    applicationClientId,
-		SecretKey:   "MZ4dCvVMCzTjgjcrAeeja336jqXtwNrSSX4mRHMwFSdrycF5",
+		SecretKey:   secretKey,
 		Enabled:     true,
 	}
 
 	// Create application if it doesnt exists
 	db.Where(coreModels.Application{ClientID: applicationClientId}).FirstOrCreate(mangerApplication)
+}
+
+func generateRandomBytes(n int) ([]byte, error) {
+	b := make([]byte, n)
+	_, err := rand.Read(b)
+	// Note that err == nil only if we read len(b) bytes.
+	if err != nil {
+		return nil, err
+	}
+
+	return b, nil
+}
+
+func generateRandomString(s int) (string, error) {
+	b, err := generateRandomBytes(s)
+	return base64.URLEncoding.EncodeToString(b), err
 }

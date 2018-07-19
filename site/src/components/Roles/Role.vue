@@ -61,13 +61,7 @@
         }
       },
       created () {
-        if (this.applications.length === 0) {
-          this.$store.dispatch(appTypes.actions.GET_APPLICATIONS, this).then(() => {
-            this.load()
-          })
-        } else {
-          this.load()
-        }
+        this.$store.dispatch(appTypes.actions.GET_APPLICATIONS, this).then(() => { this.load() })
       },
       computed: {
         ...mapGetters({
@@ -110,15 +104,3 @@
       }
     }
 </script>
-
-<style>
-  .input,
-  .dropdown,
-  .dropdown-toggle {
-    width: 100%;
-  }
-
-  .v-select .dropdown-menu > .highlight > a {
-    background-color: #00d1b2;
-  }
-</style>
