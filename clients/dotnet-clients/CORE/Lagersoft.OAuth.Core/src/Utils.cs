@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -63,6 +64,13 @@ namespace Lagersoft.OAuth
 
 		public static string GetJWT(HttpContext context)
 		{
+			// Get bearer token first hotfix for api usage:
+			var authHeader = context.Request.Headers["Authorization"].ToString();
+			if (!string.IsNullOrEmpty(authHeader))
+			{
+				return authHeader.Split(" ").Last();
+			}
+
 			if (!IsAuthenticated(context))
 				return null;
 
