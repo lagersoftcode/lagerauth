@@ -91,7 +91,8 @@ namespace Lagersoft.OAuth
 		#region authentication
 		public static bool IsAuthenticated(HttpContext context)
 		{
-			return !string.IsNullOrEmpty(context.Request.Cookies[CookieName]);
+			var authorizationHeader = context.Request.Headers["Authorization"].ToString();
+			return authorizationHeader.StartsWith("Bearer") || !string.IsNullOrEmpty(context.Request.Cookies[CookieName]);
 		}
 
 		public static void Authenticate(HttpContext context, string token)
